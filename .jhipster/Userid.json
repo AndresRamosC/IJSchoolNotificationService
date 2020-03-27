@@ -1,0 +1,32 @@
+{
+    "name": "Userid",
+    "fields": [
+        {
+            "fieldName": "creationDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "keycloakUserId",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "notification",
+            "otherEntityRelationshipName": "keycloakUserId",
+            "relationshipName": "notification"
+        }
+    ],
+    "changelogDate": "20200327170600",
+    "entityTableName": "userid",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "IJSchoolManagerNotificationService",
+    "applications": "*",
+    "microserviceName": "IJSchoolManagerNotificationService"
+}

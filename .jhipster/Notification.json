@@ -1,0 +1,46 @@
+{
+    "name": "Notification",
+    "fields": [
+        {
+            "fieldName": "creationDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "watched",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "notificationType",
+            "fieldType": "NotificationType",
+            "fieldValues": "ATTENDANCE,HOMEWORK,NOTICE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "userid",
+            "otherEntityRelationshipName": "notification",
+            "relationshipName": "keycloakUserId",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200327170700",
+    "entityTableName": "notification",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "IJSchoolManagerNotificationService",
+    "applications": "*",
+    "microserviceName": "IJSchoolManagerNotificationService"
+}
