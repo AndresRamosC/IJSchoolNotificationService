@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.ijrobotics.ijschoolnotificationservice",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "6.7.0",
+    "applicationType": "microservice",
+    "baseName": "IJSchoolManagerNotificationService",
+    "packageName": "com.ijrobotics.ijschoolnotificationservice",
+    "packageFolder": "com/ijrobotics/ijschoolnotificationservice",
+    "serverPort": "8082",
+    "authenticationType": "oauth2",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MWYzZDMyMTc1NTZlM2JlYjU2ZjdmYzZlMDkyN2U0NjBkYTQ0MmJjZjRiZTRhN2Q2NGVkOTkxOTgyMWQ1ZjdhYTYwMWM5NTk2MTZkNDUwZTE4MTE3Y2I4NGVjNjQ3NDJlODI4M2U5NDEyNWI2YjczNmQ1YjZiZGI4N2RkODczNzc=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1585327266774,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "es",
+    "languages": ["es", "en"],
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
