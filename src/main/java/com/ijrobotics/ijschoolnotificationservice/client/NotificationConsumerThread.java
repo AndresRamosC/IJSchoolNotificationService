@@ -28,16 +28,15 @@ import java.util.concurrent.CountDownLatch;
 public class NotificationConsumerThread implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     NotificationService notificationService;
-    private String topic="Notifications";
-    private String groupId="NotificationsGroup";
-    private String bootstrapServer="127.0.0.1:9092";
+    private String topic = "Notifications";
+    private String groupId = "NotificationsGroup";
+    private String bootstrapServer = "127.0.0.1:9092";
 
     public NotificationConsumerThread() {
     }
 
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent)
-    {
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         this.run();
     }
 
@@ -50,24 +49,24 @@ public class NotificationConsumerThread implements ApplicationListener<ContextRe
 
         //Create the consumer runnable
         logger.info("Creating the consumer Thread");
-        ConsumerRunnable myConsumerRunnable = new ConsumerRunnable(this.topic, this.bootstrapServer, this.groupId, latch,notificationService);
+        ConsumerRunnable myConsumerRunnable = new ConsumerRunnable(this.topic, this.bootstrapServer, this.groupId, latch, notificationService);
 
         //start the thread
-        Thread myThread=new Thread(myConsumerRunnable);
+        Thread myThread = new Thread(myConsumerRunnable);
         myThread.start();
 
         //add a shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread(
-                ()->{
-                    logger.info("Caught shutdown hook");
-                    myConsumerRunnable.shutdown();
-                    try {
-                        latch.await();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    logger.info("app has exited");
+            () -> {
+                logger.info("Caught shutdown hook");
+                myConsumerRunnable.shutdown();
+                try {
+                    latch.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                logger.info("app has exited");
+            }
         ));
 
 //        try {
@@ -81,7 +80,6 @@ public class NotificationConsumerThread implements ApplicationListener<ContextRe
     }
 
 
-
     public static class ConsumerRunnable implements Runnable {
 
 
@@ -90,9 +88,9 @@ public class NotificationConsumerThread implements ApplicationListener<ContextRe
         private Logger logger = LoggerFactory.getLogger(ConsumerRunnable.class.getName());
         private NotificationService notificationService;
 
-        ConsumerRunnable(String topic, String bootstrapServer, String groupId, CountDownLatch latch,NotificationService notificationService) {
+        ConsumerRunnable(String topic, String bootstrapServer, String groupId, CountDownLatch latch, NotificationService notificationService) {
             this.latch = latch;
-            this.notificationService=notificationService;
+            this.notificationService = notificationService;
             Properties properties = new Properties();
             properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
             properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
@@ -110,25 +108,24 @@ public class NotificationConsumerThread implements ApplicationListener<ContextRe
                 while (true) {
                     ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                     for (ConsumerRecord<String, String> record : records) {
-                        if(!record.value().isEmpty()){
-                            String[] notificationInfo =record.value().split(",");
+                        if (!record.value().isEmpty()) {
+                            String[] notificationInfo = record.value().split(",");
                             //Get the guardians
                             ArrayList<String> guardiansIds = new ArrayList<>(Arrays.asList(notificationInfo).subList(1, notificationInfo.length - 5));
                             //Get the StudentName
-                            String studentName= notificationInfo[notificationInfo.length-4];
+                            String studentName = notificationInfo[notificationInfo.length - 4];
                             //Get the SubjectName
-                            String subjectName= notificationInfo[notificationInfo.length-2].replace("]","");
+                            String subjectName = notificationInfo[notificationInfo.length - 2].replace("]", "");
                             //get the type of notification
-                            String notificationType= notificationInfo[notificationInfo.length-1];
-                            guardiansIds.forEach(guardiansIds1->{
-                                NotificationDTO notificationDTO=new NotificationDTO();
-                                notificationDTO.setCreationDate(ZonedDateTime.now());
-                                notificationDTO.setTitle(notificationType);
-                                notificationDTO.setDescription(studentName+" entered to "+subjectName+" class ");
-                                notificationDTO.setNotificationType(NotificationType.valueOf(notificationType));
-                                notificationDTO.setWatched(false);
-                                notificationService.sendNotification(guardiansIds1,notificationDTO);
-                            });
+                            String notificationType = notificationInfo[notificationInfo.length - 1];
+                            NotificationDTO notificationDTO = new NotificationDTO();
+                            notificationDTO.setCreationDate(ZonedDateTime.now());
+                            notificationDTO.setTitle(notificationType);
+                            notificationDTO.setDescription(studentName + " entered to " + subjectName + " class ");
+                            notificationDTO.setNotificationType(NotificationType.valueOf(notificationType));
+                            notificationDTO.setWatched(false);
+                            notificationService.sendNotification(guardiansIds, notificationDTO);
+
                         }
                     }
                 }

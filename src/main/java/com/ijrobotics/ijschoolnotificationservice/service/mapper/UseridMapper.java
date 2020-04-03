@@ -15,6 +15,7 @@ public interface UseridMapper extends EntityMapper<UseridDTO, Userid> {
 
     @Mapping(target = "notifications", ignore = true)
     @Mapping(target = "removeNotification", ignore = true)
+    @Mapping(target = "notificationSettings", ignore = true)
     Userid toEntity(UseridDTO useridDTO);
 
     default Userid fromId(Long id) {

@@ -1,5 +1,6 @@
 package com.ijrobotics.ijschoolnotificationservice.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -33,6 +34,10 @@ public class Userid implements Serializable {
     @OneToMany(mappedBy = "keycloakUserId")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Notification> notifications = new HashSet<>();
+
+    @OneToOne(mappedBy = "userid")
+    @JsonIgnore
+    private NotificationSettings notificationSettings;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -92,6 +97,19 @@ public class Userid implements Serializable {
 
     public void setNotifications(Set<Notification> notifications) {
         this.notifications = notifications;
+    }
+
+    public NotificationSettings getNotificationSettings() {
+        return notificationSettings;
+    }
+
+    public Userid notificationSettings(NotificationSettings notificationSettings) {
+        this.notificationSettings = notificationSettings;
+        return this;
+    }
+
+    public void setNotificationSettings(NotificationSettings notificationSettings) {
+        this.notificationSettings = notificationSettings;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -1,0 +1,42 @@
+{
+    "name": "NotificationSettings",
+    "fields": [
+        {
+            "fieldName": "creationDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "attendance",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "homework",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "notice",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "userid",
+            "otherEntityRelationshipName": "notificationSettings",
+            "relationshipName": "userid",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200331231100",
+    "entityTableName": "notification_settings",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "IJSchoolManagerNotificationService",
+    "applications": "*",
+    "microserviceName": "IJSchoolManagerNotificationService"
+}

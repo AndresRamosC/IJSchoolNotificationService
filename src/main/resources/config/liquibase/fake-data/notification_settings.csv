@@ -1,0 +1,11 @@
+id;creation_date;attendance;homework;notice;userid_id
+1;2020-03-31T06:38:21;true;false;false;1
+2;2020-03-31T23:06:33;true;false;true;2
+3;2020-03-31T00:06:46;true;true;true;3
+4;2020-03-31T12:37:50;false;false;false;4
+5;2020-03-31T04:38:59;true;true;false;5
+6;2020-03-31T06:44:12;false;true;false;6
+7;2020-03-31T13:42:24;false;false;true;7
+8;2020-03-31T20:48:29;true;true;true;8
+9;2020-03-31T11:47:32;false;true;false;9
+10;2020-03-31T05:23:05;true;false;true;10

@@ -16,6 +16,13 @@
             "otherEntityName": "notification",
             "otherEntityRelationshipName": "keycloakUserId",
             "relationshipName": "notification"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "notificationSettings",
+            "otherEntityRelationshipName": "userid",
+            "relationshipName": "notificationSettings",
+            "ownerSide": false
         }
     ],
     "changelogDate": "20200327170600",
